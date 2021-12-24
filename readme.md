@@ -29,3 +29,9 @@ Outputs image with a chrome like browser frame
 prfy chromefy input.png output.png
 ```
 
+## Example
+
+https://user-images.githubusercontent.com/54639269/147305275-59ad0b50-79fc-409a-a9c8-55e26a0e9c00.mp4
+
+
+
