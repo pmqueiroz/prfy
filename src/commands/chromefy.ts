@@ -1,4 +1,5 @@
 import { GluegunCommand } from 'gluegun'
+import { WarnWithCard } from '../helpers'
 import * as sharp from 'sharp'
 
 const verifyDimensions = (metadata: sharp.Metadata) => {
@@ -8,8 +9,9 @@ const verifyDimensions = (metadata: sharp.Metadata) => {
 const command: GluegunCommand = {
   name: 'chromefy',
   run: async toolbox => {
-    const { print: { success, error, warning }, parameters: { array: args }, template, filesystem } = toolbox
+    const { print, parameters: { array: args }, template, filesystem } = toolbox
 
+    const { success, error } = print
     const [input, output] = args
 
     const fileInputPath = filesystem.isNotFile(input) ? filesystem.path(process.cwd(), input) : input
@@ -25,7 +27,7 @@ const command: GluegunCommand = {
     const sharpImage = sharp(fileInputPath)
 
     if(!verifyDimensions(await sharpImage.metadata())) {
-      warning('Prefer to use images with dimensions 1920x966')
+      WarnWithCard('Prefer to use images with dimensions 1920x966', print)
     }
 
     const image = await sharpImage.resize(1920, 966).toBuffer()
