@@ -9,10 +9,10 @@ A cli to generated beautified assets for place in pull requests (or wherever you
 
 ```sh
 # npm
-npm install prfy
+npm install prfy -g
 
 # yarn 
-yarn add prfy
+yarn global add prfy
 ```
 
 ## Commands
