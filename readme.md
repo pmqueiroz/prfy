@@ -1,25 +1,31 @@
-# prfy CLI
+<div align="center">
 
-A CLI for prfy.
+# PullRequestFy
+A cli to generated beautified assets for place in pull requests (or wherever you want) :D
 
-## Customizing your CLI
+</div>
 
-Check out the documentation at https://github.com/infinitered/gluegun/tree/master/docs.
+## Install
 
-## Publishing to NPM
+```sh
+# npm
+npm install prfy
 
-To package your CLI up for NPM, do this:
-
-```shell
-$ npm login
-$ npm whoami
-$ npm lint
-$ npm test
-(if typescript, run `npm run build` here)
-$ npm publish
+# yarn 
+yarn add prfy
 ```
 
-# License
+## Commands
 
-MIT - see LICENSE
+### Chromefy
+
+Outputs image with a chrome like browser frame
+
+#### Usage
+
+```sh
+# Output must be a png file
+
+prfy chromefy input.png output.png
+```
 
