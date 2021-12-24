@@ -2,7 +2,7 @@
   "name": "prfy",
   "version": "0.0.1",
   "description": "prfy CLI",
-  "private": true,
+  "private": false,
   "types": "build/types/types.d.ts",
   "bin": {
     "prfy": "bin/prfy"
