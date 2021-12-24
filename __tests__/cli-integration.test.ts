@@ -27,3 +27,9 @@ test('generates file', async () => {
   // cleanup artifact
   filesystem.remove('models')
 })
+
+test('chromefy', async () => {
+  const output = await cli('chromefy test-image.png')
+
+  expect(output).toContain('Generated file at models/foo-model.ts')
+})
