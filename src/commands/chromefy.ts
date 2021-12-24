@@ -1,10 +1,14 @@
 import { GluegunCommand } from 'gluegun'
 import * as sharp from 'sharp'
 
+const verifyDimensions = (metadata: sharp.Metadata) => {
+   return metadata.width === 1920 && metadata.height === 966
+}
+
 const command: GluegunCommand = {
   name: 'chromefy',
   run: async toolbox => {
-    const { print: { success, error }, parameters: { array: args }, template, filesystem } = toolbox
+    const { print: { success, error, warning }, parameters: { array: args }, template, filesystem } = toolbox
 
     const [input, output] = args
 
@@ -18,7 +22,13 @@ const command: GluegunCommand = {
       return error('You must provide an output file')
     }
 
-    const image = await sharp(fileInputPath).resize(1920, 966).toBuffer()
+    const sharpImage = sharp(fileInputPath)
+
+    if(!verifyDimensions(await sharpImage.metadata())) {
+      warning('Prefer to use images with dimensions 1920x966')
+    }
+
+    const image = await sharpImage.resize(1920, 966).toBuffer()
 
     const svgGenerated = await template.generate({
        template: 'chrome.svg.ejs',
